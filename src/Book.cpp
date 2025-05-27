@@ -1,4 +1,3 @@
-// src/Book.cpp
 #include "Book.h++"
 #include <iostream>
 #include <iomanip> // For std::fixed and std::setprecision
@@ -28,6 +27,5 @@ void Book::display() const {
     cout << "ISBN: " << isbn << ", 书名: " << title
          << ", 作者: " << author << ", 价格: "
          << fixed << setprecision(2) << price << "元";
-    // Removed std::endl to allow Bookstore to format list numbers.
 }
 

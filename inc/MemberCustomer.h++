@@ -1,4 +1,3 @@
-// inc/MemberCustomer.h++
 #ifndef MEMBER_CUSTOMER_HPP
 #define MEMBER_CUSTOMER_HPP
 
@@ -8,7 +7,7 @@ using namespace std;
 
 class MemberCustomer : public Customer {
 private:
-    int starLevel; // 会员星级 (1-5)
+    int starLevel;
 
 public:
     MemberCustomer(const std::string& id = "", const std::string& name = "", int level = 1);

@@ -1,4 +1,3 @@
-// inc/Book.h++
 #ifndef BOOK_HPP
 #define BOOK_HPP
 

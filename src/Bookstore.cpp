@@ -1,10 +1,9 @@
-// src/Bookstore.cpp
 #include "Bookstore.h++"
-#include <fstream>      // 用于文件读写
-#include <sstream>      // 用于字符串解析
-#include <limits>       // 用于 std::numeric_limits
-#include <stdexcept>    // 用于 std::invalid_argument, std::stod, std::stoi
-#include <algorithm>    // 用于 std::remove for string manipulation
+#include <fstream>
+#include <sstream>
+#include <limits>
+#include <stdexcept>
+#include <algorithm>
 
 using namespace std;
 
@@ -23,13 +22,10 @@ Bookstore::Bookstore(const std::string& booksFile, const std::string& customersF
     : booksFilename(booksFile), customersFilename(customersFile), ordersFilename(ordersFile) {
     loadBooksFromFile();
     loadCustomersFromFile();
-    // 订单通常在程序运行过程中创建并保存，启动时可能不需要加载旧订单到内存中进行操作，
-    // 而是直接追加新订单到文件。如果需要加载历史订单，可以添加 loadOrdersFromFile()。
 }
 
 Bookstore::~Bookstore() {
-    clearCustomers(); // 清理动态分配的顾客对象
-    // saveOrdersToFile(); // 可以在析构时保存所有订单，或者在每次订单完成后保存
+    clearCustomers();
 }
 
 void Bookstore::clearCustomers() {
@@ -148,20 +144,6 @@ void Bookstore::saveOrderToFile(const Order& order) const {
     }
     outFile << order.getOrderSummaryForFile() << std::endl;
     outFile.close();
-}
-
-// 如果需要一次性保存所有内存中的订单 (当前设计是逐个保存)
-void Bookstore::saveOrdersToFile() const {
-    std::ofstream outFile(ordersFilename.c_str()); // 会覆盖旧文件
-    if (!outFile) {
-        std::cerr << "错误: 无法打开订单文件 " << ordersFilename << " 进行写入。" << std::endl;
-        return;
-    }
-    for (size_t i = 0; i < orders.size(); ++i) {
-        outFile << orders[i].getOrderSummaryForFile() << std::endl;
-    }
-    outFile.close();
-    std::cout << orders.size() << " 条订单已保存到 " << ordersFilename << std::endl;
 }
 
 void Bookstore::displayBooks() const {
