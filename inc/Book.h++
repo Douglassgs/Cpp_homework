@@ -5,19 +5,21 @@
 #include <string>
 #include <iostream>
 
+using namespace std;
+
 class Book {
 private:
-    std::string isbn;
-    std::string title;
-    std::string author;
+    string isbn;
+    string title;
+    string author;
     double price;
 
 public:
-    Book(const std::string& isbn = "", const std::string& title = "", const std::string& author = "", double price = 0.0);
+    Book(const string& isbn = "", const string& title = "", const string& author = "", double price = 0.0);
 
-    std::string getIsbn() const;
-    std::string getTitle() const;
-    std::string getAuthor() const;
+    string getIsbn() const;
+    string getTitle() const;
+    string getAuthor() const;
     double getPrice() const;
 
     void display() const;

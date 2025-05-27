@@ -4,6 +4,8 @@
 
 #include "Customer.h++"
 
+using namespace std;
+
 class MemberCustomer : public Customer {
 private:
     int starLevel; // 会员星级 (1-5)

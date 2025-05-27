@@ -12,6 +12,8 @@
 #include <string>
 #include <iostream> // 用于输出提示和错误信息
 
+using namespace std;
+
 class Bookstore {
 private:
     DynamicArray<Book> books;

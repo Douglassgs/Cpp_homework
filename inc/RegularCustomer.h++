@@ -4,6 +4,8 @@
 
 #include "Customer.h++"
 
+using namespace std;
+
 class RegularCustomer : public Customer {
 public:
     RegularCustomer(const std::string& id = "", const std::string& name = "");

@@ -4,6 +4,8 @@
 #include <iomanip> // 用于 std::fixed, std::setprecision
 #include <sstream> // 用于 std::ostringstream
 
+using namespace std;
+
 MemberCustomer::MemberCustomer(const std::string& id, const std::string& name, int level)
     : Customer(id, name), starLevel(level) {
     if (starLevel < 1) starLevel = 1;

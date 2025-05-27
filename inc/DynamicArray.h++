@@ -5,6 +5,8 @@
 #include <stdexcept> // 用于 std::out_of_range, std::bad_alloc
 #include <cstddef>   // 用于 size_t
 
+using namespace std;
+
 template <typename T>
 class DynamicArray {
 private:

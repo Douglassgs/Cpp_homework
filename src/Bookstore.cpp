@@ -6,6 +6,8 @@
 #include <stdexcept>    // 用于 std::invalid_argument, std::stod, std::stoi
 #include <algorithm>    // 用于 std::remove for string manipulation
 
+using namespace std;
+
 // 辅助函数：去除字符串两端的空白字符
 std::string trim(const std::string& str) {
     const std::string whitespace = " \t\n\r\f\v";

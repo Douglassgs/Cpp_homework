@@ -1,6 +1,8 @@
 // src/Customer.cpp
 #include "Customer.h++"
 
+using namespace std;
+
 Customer::Customer(const std::string& id, const std::string& name)
     : customerId(id), name(name) {}
 

@@ -4,6 +4,8 @@
 
 #include "Customer.h++"
 
+using namespace std;
+
 class VIPCustomer : public Customer {
 private:
     double specialDiscountRate; // 特别折扣率 (例如 0.4 表示折扣40%，即按60%收费)

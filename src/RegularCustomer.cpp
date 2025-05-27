@@ -2,6 +2,8 @@
 #include "RegularCustomer.h++"
 #include <iostream>
 
+using namespace std;
+
 RegularCustomer::RegularCustomer(const std::string& id, const std::string& name)
     : Customer(id, name) {}
 

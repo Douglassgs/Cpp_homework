@@ -1,70 +1,70 @@
 // main.cpp
 #include "Bookstore.h++"
 #include <iostream>
-#include <fstream> // ÓÃÓÚÎÄ¼ş¼ì²éºÍ´´½¨
+#include <fstream> // ç”¨äºæ–‡ä»¶æ£€æŸ¥å’Œåˆ›å»º
 
 int main() {
-    // ¶¨ÒåÊı¾İÎÄ¼şÃû
-    // È·±£ÕâĞ©ÎÄ¼şÓë¿ÉÖ´ĞĞÎÄ¼şÔÚÍ¬Ò»Ä¿Â¼£¬»òÕßÌá¹©ÍêÕû/Ïà¶ÔÂ·¾¶
-    // ÎªÁË¼òµ¥Æğ¼û£¬ÎÒÃÇ¼ÙÉèËüÃÇÔÚ³ÌĞòµÄ¹¤×÷Ä¿Â¼ÏÂ
-    std::string booksFile = "books.txt";
-    std::string customersFile = "customers.txt";
-    std::string ordersFile = "orders.txt";
+    // å®šä¹‰æ•°æ®æ–‡ä»¶å
+    // ç¡®ä¿è¿™äº›æ–‡ä»¶ä¸å¯æ‰§è¡Œæ–‡ä»¶åœ¨åŒä¸€ç›®å½•ï¼Œæˆ–è€…æä¾›å®Œæ•´/ç›¸å¯¹è·¯å¾„
+    // ä¸ºäº†ç®€å•èµ·è§ï¼Œæˆ‘ä»¬å‡è®¾å®ƒä»¬åœ¨ç¨‹åºçš„å·¥ä½œç›®å½•ä¸‹
+    std::string booksFile = "./books.txt";
+    std::string customersFile = "./customers.txt";
+    std::string ordersFile = "./orders.txt";
 
-    // ×¼±¸Ò»Ğ©Ê¾ÀıÊı¾İÎÄ¼ş£¬Èç¹ûËüÃÇ²»´æÔÚµÄ»°
+    // å‡†å¤‡ä¸€äº›ç¤ºä¾‹æ•°æ®æ–‡ä»¶ï¼Œå¦‚æœå®ƒä»¬ä¸å­˜åœ¨çš„è¯
     std::ofstream outFile;
     std::ifstream checkFile;
 
-    // ¼ì²é²¢´´½¨ books.txt (Èç¹û²»´æÔÚ)
+    // æ£€æŸ¥å¹¶åˆ›å»º books.txt (å¦‚æœä¸å­˜åœ¨)
     checkFile.open(booksFile.c_str());
     if (!checkFile.good()) {
-        checkFile.close(); // ¹Ø±Õ¼ì²éÁ÷
+        checkFile.close(); // å…³é—­æ£€æŸ¥æµ
         outFile.open(booksFile.c_str());
         if (outFile.is_open()) {
             outFile << "9787111635626,C++ Primer Plus,Stephen Prata,99.00\n";
             outFile << "9787121374320,Effective C++,Scott Meyers,78.50\n";
-            outFile << "9787030410243,Ëã·¨µ¼ÂÛ,Thomas H. Cormen,128.00\n";
-            outFile << "9787115495920,Python±à³Ì´ÓÈëÃÅµ½Êµ¼ù,Eric Matthes,89.00\n";
+            outFile << "9787030410243,ç®—æ³•å¯¼è®º,Thomas H. Cormen,128.00\n";
+            outFile << "9787115495920,Pythonç¼–ç¨‹ä»å…¥é—¨åˆ°å®è·µ,Eric Matthes,89.00\n";
             outFile.close();
-            std::cout << "Ê¾Àı books.txt ÒÑ´´½¨¡£" << std::endl;
+            std::cout << "ç¤ºä¾‹ books.txt å·²åˆ›å»ºã€‚" << std::endl;
         } else {
-            std::cerr << "ÎŞ·¨´´½¨Ê¾Àı books.txt¡£" << std::endl;
+            std::cerr << "æ— æ³•åˆ›å»ºç¤ºä¾‹ books.txtã€‚" << std::endl;
         }
     } else {
         checkFile.close();
     }
 
-    // ¼ì²é²¢´´½¨ customers.txt (Èç¹û²»´æÔÚ)
+    // æ£€æŸ¥å¹¶åˆ›å»º customers.txt (å¦‚æœä¸å­˜åœ¨)
     checkFile.open(customersFile.c_str());
     if (!checkFile.good()) {
         checkFile.close();
         outFile.open(customersFile.c_str());
         if (outFile.is_open()) {
-            outFile << "R001,ÕÅÈı,Regular,0\n";
-            outFile << "M001,ÀîËÄ,Member,5\n"; // 5ĞÇ»áÔ±
-            outFile << "M002,ÕÔÃô,Member,3\n"; // 3ĞÇ»áÔ±
-            outFile << "V001,ÍõÎå,VIP,0.4\n";   // 40%ÕÛ¿Û (¼´°´60%ÊÕ·Ñ)
-            outFile << "R002,ÖÜÜÆÈô,Regular,0\n";
+            outFile << "R001,å¼ ä¸‰,Regular,0\n";
+            outFile << "M001,æå››,Member,5\n"; // 5æ˜Ÿä¼šå‘˜
+            outFile << "M002,èµµæ•,Member,3\n"; // 3æ˜Ÿä¼šå‘˜
+            outFile << "V001,ç‹äº”,VIP,0.4\n";   // 40%æŠ˜æ‰£ (å³æŒ‰60%æ”¶è´¹)
+            outFile << "R002,å‘¨èŠ·è‹¥,Regular,0\n";
             outFile.close();
-            std::cout << "Ê¾Àı customers.txt ÒÑ´´½¨¡£" << std::endl;
+            std::cout << "ç¤ºä¾‹ customers.txt å·²åˆ›å»ºã€‚" << std::endl;
         } else {
-            std::cerr << "ÎŞ·¨´´½¨Ê¾Àı customers.txt¡£" << std::endl;
+            std::cerr << "æ— æ³•åˆ›å»ºç¤ºä¾‹ customers.txtã€‚" << std::endl;
         }
     } else {
         checkFile.close();
     }
 
-    // ´´½¨¿ÕµÄ orders.txt (Èç¹û²»´æÔÚ)
-    // µ±Ç°Éè¼ÆÊÇ×·¼Ó¶©µ¥£¬ËùÒÔÈç¹ûÎÄ¼ş²»´æÔÚ£¬Ê×´ÎÔËĞĞÊ±»á×Ô¶¯´´½¨¡£
+    // åˆ›å»ºç©ºçš„ orders.txt (å¦‚æœä¸å­˜åœ¨)
+    // å½“å‰è®¾è®¡æ˜¯è¿½åŠ è®¢å•ï¼Œæ‰€ä»¥å¦‚æœæ–‡ä»¶ä¸å­˜åœ¨ï¼Œé¦–æ¬¡è¿è¡Œæ—¶ä¼šè‡ªåŠ¨åˆ›å»ºã€‚
     checkFile.open(ordersFile.c_str());
     if (!checkFile.good()) {
         checkFile.close();
-        outFile.open(ordersFile.c_str()); // ´´½¨¿ÕÎÄ¼ş
+        outFile.open(ordersFile.c_str()); // åˆ›å»ºç©ºæ–‡ä»¶
         if (outFile.is_open()) {
-            std::cout << "¿ÕµÄ orders.txt ÒÑ´´½¨ (Èç¹ûÖ®Ç°²»´æÔÚ)¡£" << std::endl;
+            std::cout << "ç©ºçš„ orders.txt å·²åˆ›å»º (å¦‚æœä¹‹å‰ä¸å­˜åœ¨)ã€‚" << std::endl;
             outFile.close();
         } else {
-             std::cerr << "ÎŞ·¨´´½¨ orders.txt¡£" << std::endl;
+             std::cerr << "æ— æ³•åˆ›å»º orders.txtã€‚" << std::endl;
         }
     } else {
         checkFile.close();

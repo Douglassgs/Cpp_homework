@@ -7,6 +7,8 @@
 #include <iostream> // 用于 display
 #include <iomanip>  // 用于 std::fixed, std::setprecision
 
+using namespace std;
+
 class OrderItem {
 private:
     Book book;      // 购买的书籍对象

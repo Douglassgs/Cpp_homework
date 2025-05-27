@@ -10,6 +10,8 @@
 #include <iomanip>  // 用于 std::fixed, std::setprecision
 #include <sstream>  // 用于 getOrderSummaryForFile
 
+using namespace std;
+
 class Order {
 private:
     static int nextOrderId; // 用于生成唯一的订单ID
@@ -36,7 +38,7 @@ public:
     void addItem(const OrderItem& item);
 
     void displayOrderDetails() const;
-    std::string getOrderSummaryForFile() const; // 获取用于文件输出的订单摘要
+    string getOrderSummaryForFile() const; // 获取用于文件输出的订单摘要
 };
 
 #endif // ORDER_HPP

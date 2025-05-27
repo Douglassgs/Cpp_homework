@@ -4,6 +4,8 @@
 #include <iomanip> // 用于 std::fixed, std::setprecision
 #include <sstream> // 用于 std::ostringstream
 
+using namespace std;
+
 // 初始化静态成员变量
 int Order::nextOrderId = 1;
 
