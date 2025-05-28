@@ -7,12 +7,11 @@
 
 using namespace std;
 
-// 辅助函数：去除字符串两端的空白字符
 std::string trim(const std::string& str) {
     const std::string whitespace = " \t\n\r\f\v";
     size_t start = str.find_first_not_of(whitespace);
     if (start == std::string::npos) {
-        return ""; // 全是空白
+        return "";
     }
     size_t end = str.find_last_not_of(whitespace);
     return str.substr(start, (end - start + 1));
@@ -30,13 +29,13 @@ Bookstore::~Bookstore() {
 
 void Bookstore::clearCustomers() {
     for (size_t i = 0; i < customers.size(); ++i) {
-        delete customers[i]; // 删除 Customer 对象
+        delete customers[i];
     }
-    customers.clear(); // 清空数组
+    customers.clear();
 }
 
 void Bookstore::loadBooksFromFile() {
-    std::ifstream inFile(booksFilename.c_str()); // 使用 .c_str() 以兼容旧版C++标准
+    std::ifstream inFile(booksFilename.c_str());
     if (!inFile) {
         std::cerr << "错误: 无法打开书籍文件 " << booksFilename << std::endl;
         return;
@@ -45,7 +44,7 @@ void Bookstore::loadBooksFromFile() {
     std::string line;
     while (std::getline(inFile, line)) {
         line = trim(line);
-        if (line.empty()) continue; // 跳过空行
+        if (line.empty()) continue;
 
         std::stringstream ss(line);
         std::string isbn, title, author, priceStr;
@@ -66,7 +65,7 @@ void Bookstore::loadBooksFromFile() {
         }
 
         try {
-            double price = std::stod(priceStr); // std::stod 在 <string>
+            double price = std::stod(priceStr);
             books.add(Book(isbn, title, author, price));
         } catch (const std::invalid_argument& ia) {
             std::cerr << "警告: 书籍价格格式无效: " << priceStr << " 在行: " << line << std::endl;
@@ -96,7 +95,7 @@ void Bookstore::loadCustomersFromFile() {
         std::getline(ss, id, ',');
         std::getline(ss, name, ',');
         std::getline(ss, type, ',');
-        std::getline(ss, attributeStr, ','); // 可能为空或包含特定属性
+        std::getline(ss, attributeStr, ',');
 
         id = trim(id);
         name = trim(name);
@@ -113,7 +112,7 @@ void Bookstore::loadCustomersFromFile() {
             if (type == "Regular") {
                 customer = new RegularCustomer(id, name);
             } else if (type == "Member") {
-                int level = std::stoi(attributeStr); // std::stoi 在 <string>
+                int level = std::stoi(attributeStr);
                 customer = new MemberCustomer(id, name, level);
             } else if (type == "VIP") {
                 double discount = std::stod(attributeStr);
@@ -125,7 +124,7 @@ void Bookstore::loadCustomersFromFile() {
             customers.add(customer);
         } catch (const std::invalid_argument& ia) {
             std::cerr << "警告: 顾客属性格式无效: " << attributeStr << " 对于类型 " << type << " 在行: " << line << std::endl;
-            if(customer) delete customer; // 如果部分创建失败，清理
+            if(customer) delete customer;
         } catch (const std::out_of_range& oor) {
             std::cerr << "警告: 顾客属性超出范围: " << attributeStr << " 对于类型 " << type << " 在行: " << line << std::endl;
             if(customer) delete customer;
@@ -136,7 +135,6 @@ void Bookstore::loadCustomersFromFile() {
 }
 
 void Bookstore::saveOrderToFile(const Order& order) const {
-    // 以追加模式打开文件
     std::ofstream outFile(ordersFilename.c_str(), std::ios::app);
     if (!outFile) {
         std::cerr << "错误: 无法打开订单文件 " << ordersFilename << " 进行写入。" << std::endl;
@@ -167,7 +165,7 @@ void Bookstore::displayCustomers() const {
     } else {
         for (size_t i = 0; i < customers.size(); ++i) {
             std::cout << i + 1 << ". ";
-            customers[i]->display(); // 通过指针调用虚函数
+            customers[i]->display();
             std::cout << std::endl;
         }
     }
@@ -177,10 +175,10 @@ void Bookstore::displayCustomers() const {
 Book* Bookstore::findBookByIsbn(const std::string& isbn) {
     for (size_t i = 0; i < books.size(); ++i) {
         if (books[i].getIsbn() == isbn) {
-            return &books[i]; // 返回指向数组中对象的指针
+            return &books[i];
         }
     }
-    return nullptr; // 未找到
+    return nullptr;
 }
 
 Book* Bookstore::findBookByIndex(int index) {
@@ -193,10 +191,10 @@ Book* Bookstore::findBookByIndex(int index) {
 Customer* Bookstore::findCustomerById(const std::string& customerId) {
     for (size_t i = 0; i < customers.size(); ++i) {
         if (customers[i]->getCustomerId() == customerId) {
-            return customers[i]; // 返回存储的指针
+            return customers[i];
         }
     }
-    return nullptr; // 未找到
+    return nullptr;
 }
 
 Customer* Bookstore::findCustomerByIndex(int index) {
@@ -214,8 +212,8 @@ void Bookstore::run() {
         std::cout << "1. 显示所有书籍" << std::endl;
         std::cout << "2. 显示所有顾客" << std::endl;
         std::cout << "3. 开始新的订单" << std::endl;
-        std::cout << "0. 退出" << std::endl; // 修改退出选项
-        std::cout << "请输入选项 (0-3): "; // 修改提示
+        std::cout << "0. 退出" << std::endl;
+        std::cout << "请输入选项 (0-3): ";
 
         int choice;
         std::cin >> choice;
@@ -228,7 +226,7 @@ void Bookstore::run() {
         }
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-        if (choice == 0) { // 修改退出条件
+        if (choice == 0) {
             running = false;
             std::cout << "感谢使用，再见!" << std::endl;
             break;
@@ -265,7 +263,7 @@ void Bookstore::run() {
                     break;
                 }
 
-                Customer* selectedCustomer = findCustomerByIndex(customerIndexInput - 1); // 序号转索引
+                Customer* selectedCustomer = findCustomerByIndex(customerIndexInput - 1);
                 if (!selectedCustomer) {
                     std::cout << "未找到序号为 " << customerIndexInput << " 的顾客。" << std::endl;
                     break;
@@ -296,7 +294,7 @@ void Bookstore::run() {
                         break;
                     }
 
-                    Book* selectedBook = findBookByIndex(bookIndexInput - 1); // 序号转索引
+                    Book* selectedBook = findBookByIndex(bookIndexInput - 1);
                     if (!selectedBook) {
                         std::cout << "未找到序号为 " << bookIndexInput << " 的书籍。" << std::endl;
                         continue;
@@ -317,7 +315,6 @@ void Bookstore::run() {
                     std::cout << "已添加: " << selectedBook->getTitle() << " x" << quantity << std::endl;
                     newOrder.displayOrderDetails();
 
-                    // 购买后不直接退出到书籍列表，询问是否继续添加
                     std::cout << "是否继续添加其他书籍到当前订单? (y/n，输入0完成订单): ";
                     char continueChoice;
                     std::cin >> continueChoice;
@@ -328,7 +325,7 @@ void Bookstore::run() {
                     } else if (continueChoice == 'n' || continueChoice == 'N') {
                         addingBooks = false;
                     } else if (continueChoice == 'y' || continueChoice == 'Y') {
-                        // 继续循环添加书籍
+                        // continue
                     } else {
                         std::cout << "无效输入，默认继续添加书籍。" << std::endl;
                     }
@@ -356,9 +353,8 @@ void Bookstore::run() {
                 }
                 break;
             }
-            // case 4 was removed due to exit condition change
             default: {
-                std::cout << "无效选项，请输入0-3之间的数字。" << std::endl; // 更新提示
+                std::cout << "无效选项，请输入0-3之间的数字。" << std::endl;
                 break;
             }
         }

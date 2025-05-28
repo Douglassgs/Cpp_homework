@@ -1,6 +1,6 @@
 #include "Book.h++"
 #include <iostream>
-#include <iomanip> // For std::fixed and std::setprecision
+#include <iomanip>
 
 using namespace std;
 

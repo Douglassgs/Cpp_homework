@@ -8,7 +8,7 @@ RegularCustomer::RegularCustomer(const std::string& id, const std::string& name)
     : Customer(id, name) {}
 
 double RegularCustomer::applyDiscount(double originalPrice) const {
-    return originalPrice; // 普通顾客无折扣
+    return originalPrice;
 }
 
 void RegularCustomer::display() const {

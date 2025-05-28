@@ -1,18 +1,16 @@
 // src/OrderItem.cpp
 #include "OrderItem.h++"
 #include <iostream>
-#include <iomanip> // 用于 std::fixed, std::setprecision
+#include <iomanip>
 
 using namespace std;
 
 OrderItem::OrderItem() : book(), quantity(0) {
-    // book 成员将使用 Book 类的默认构造函数进行初始化
-    // quantity 初始化为 0
 }
 
 OrderItem::OrderItem(const Book& b, int qty)
     : book(b), quantity(qty) {
-    if (this->quantity < 1) { // 确保数量至少为1
+    if (this->quantity < 1) {
         this->quantity = 1;
     }
 }

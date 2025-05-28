@@ -1,15 +1,15 @@
 // src/VIPCustomer.cpp
 #include "VIPCustomer.h++"
 #include <iostream>
-#include <iomanip> // For std::fixed, std::setprecision
-#include <sstream> // For std::ostringstream
+#include <iomanip>
+#include <sstream>
 
 using namespace std;
 
 VIPCustomer::VIPCustomer(const std::string& id, const std::string& name, double discount)
     : Customer(id, name), specialDiscountRate(discount) {
     if (specialDiscountRate < 0.0) specialDiscountRate = 0.0;
-    if (specialDiscountRate > 1.0) specialDiscountRate = 1.0; // 折扣率不能超过100%
+    if (specialDiscountRate > 1.0) specialDiscountRate = 1.0;
 }
 
 double VIPCustomer::getSpecialDiscountRate() const {
